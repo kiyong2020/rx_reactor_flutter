@@ -19,8 +19,8 @@ class _ReactBuilderState<T extends ContextReactor>
   Widget build(BuildContext context) {
     widget.reactor.onBuildUI(context);
 
-    return ChangeNotifierProvider<T>(
-      create: (context) => widget.reactor,
+    return Provider<T>.value(
+      value: widget.reactor,
       child: Builder(builder: (context) {
         return widget.builder(context, widget.reactor);
       }),

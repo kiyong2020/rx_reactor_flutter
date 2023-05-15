@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'reactor.dart';
 
-abstract class ContextReactor<State> extends ChangeNotifier
-    with Reactor<State> {
+abstract class ContextReactor<State> with Reactor<State> {
   late BuildContext context;
 
   Future<BuildContext> get safeContext async {
