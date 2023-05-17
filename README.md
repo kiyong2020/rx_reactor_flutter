@@ -24,7 +24,7 @@ Add the dependency in `pubspec.yaml`:
 ```yaml
 dependencies:
   ...
-  rx_reactor_flutter: ^0.1.3
+  rx_reactor_flutter: ^0.1.4
 ```
 
 ## Usage

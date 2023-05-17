@@ -1,6 +1,6 @@
 name: rx_reactor
 description: Simple MVVM reactive programming tool using ReactiveX for flutter.
-version: 0.1.2
+version: 0.1.4
 homepage: https://github.com/kiyong2020/rx_reactor_flutter
 
 environment:
