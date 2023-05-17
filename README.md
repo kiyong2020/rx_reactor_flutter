@@ -11,7 +11,6 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-
 ## Features
 
 Simple MVVM reactive programming tool using ReactiveX for flutter.
@@ -25,12 +24,10 @@ Add the dependency in `pubspec.yaml`:
 ```yaml
 dependencies:
   ...
-  rx_reactor_flutter: ^0.1.1
+  rx_reactor_flutter: ^0.1.3
 ```
 
-
 ## Usage
-
 
 Reactor
 
@@ -79,9 +76,8 @@ class MainScreenReactor extends ContextReactor<MainState> {
 }
 ```
 
-
 View
- 
+
 ```dart
 class MainScreen extends StatelessWidget {
   final reactor = MainScreenReactor(); 
@@ -96,4 +92,3 @@ class MainScreen extends StatelessWidget {
   }
 }
 ```
-

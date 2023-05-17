@@ -1,3 +1,7 @@
+## 0.1.3
+
+* removes change notifier
+
 ## 0.1.2
 
 * error fix.
