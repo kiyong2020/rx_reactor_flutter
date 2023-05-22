@@ -10,10 +10,10 @@ class ReactBuilder<T extends ContextReactor> extends StatefulWidget {
   const ReactBuilder({required this.reactor, required this.builder, super.key});
 
   @override
-  State<StatefulWidget> createState() => _ReactBuilderState<T>();
+  State<StatefulWidget> createState() => ReactBuilderState<T>();
 }
 
-class _ReactBuilderState<T extends ContextReactor>
+class ReactBuilderState<T extends ContextReactor>
     extends State<ReactBuilder<T>> {
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _ReactBuilderState<T extends ContextReactor>
   void initState() {
     super.initState();
 
-    // widget.reactor.onInit();
+    widget.reactor.onInitState(this);
   }
 
   @override
@@ -40,3 +40,14 @@ class _ReactBuilderState<T extends ContextReactor>
     super.dispose();
   }
 }
+
+class TickerReactBuilder<T extends ContextReactor> extends ReactBuilder<T> {
+  const TickerReactBuilder(
+      {required super.reactor, required super.builder, super.key});
+
+  @override
+  State<StatefulWidget> createState() => TickerProviderReactBuilderState<T>();
+}
+
+class TickerProviderReactBuilderState<T extends ContextReactor>
+    extends ReactBuilderState<T> with TickerProviderStateMixin {}

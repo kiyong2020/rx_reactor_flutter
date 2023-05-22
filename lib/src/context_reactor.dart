@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'reactor.dart';
 
-abstract class ContextReactor<State> with Reactor<State> {
+abstract class ContextReactor<S> with Reactor<S> {
   late BuildContext context;
+  late State contextState;
 
   Future<BuildContext> get safeContext async {
     await Future.delayed(Duration.zero);
@@ -13,6 +14,11 @@ abstract class ContextReactor<State> with Reactor<State> {
   }
 
   var _isContextReady = false;
+
+  @mustCallSuper
+  void onInitState(State state) {
+    this.contextState = state;
+  }
 
   /// Method which runs when widget builds UI
   @mustCallSuper
