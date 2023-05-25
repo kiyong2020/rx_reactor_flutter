@@ -13,8 +13,8 @@ mixin Reactor<State> {
   State get state;
 
   @mustCallSuper
-  void initReact() {
-    action
+  void onInitReactor() {
+    transformAction(action)
         .flatMap((act) => mutate(act))
         .listen((mutation) => _mutation.add(mutation))
         .disposedBy(disposeBag);
@@ -32,6 +32,8 @@ mixin Reactor<State> {
   }
 
   Stream<ReactMutation> mutate(ReactAction action);
+
+  Stream<ReactAction> transformAction(Stream<ReactAction> action) => action;
 
   Stream<ReactMutation> transform(Stream<ReactMutation> mutation) => mutation;
 

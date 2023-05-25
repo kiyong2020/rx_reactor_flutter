@@ -6,7 +6,7 @@ import 'reactor.dart';
 
 abstract class ContextReactor<S> with Reactor<S> {
   late BuildContext context;
-  late State contextState;
+  late State widgetState;
 
   Future<BuildContext> get safeContext async {
     await Future.delayed(Duration.zero);
@@ -17,7 +17,7 @@ abstract class ContextReactor<S> with Reactor<S> {
 
   @mustCallSuper
   void onInitState(State state) {
-    this.contextState = state;
+    this.widgetState = state;
   }
 
   /// Method which runs when widget builds UI
@@ -27,7 +27,7 @@ abstract class ContextReactor<S> with Reactor<S> {
 
     if (!_isContextReady) {
       _isContextReady = true;
-      initReact();
+      onInitReactor();
       onContextReady(context);
     }
   }
