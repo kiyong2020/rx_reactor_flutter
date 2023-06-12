@@ -13,7 +13,7 @@ mixin Reactor<State> {
   State get state;
 
   @mustCallSuper
-  void onInitReactor() {
+  void onBindReactor() {
     transformAction(action)
         .flatMap((act) => mutate(act))
         .listen((mutation) => _mutation.add(mutation))

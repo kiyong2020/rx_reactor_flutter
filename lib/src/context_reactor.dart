@@ -27,8 +27,8 @@ abstract class ContextReactor<S> with Reactor<S> {
 
     if (!_isContextReady) {
       _isContextReady = true;
-      onInitReactor();
       onContextReady(context);
+      onBindReactor();
     }
   }
 

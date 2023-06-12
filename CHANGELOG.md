@@ -1,3 +1,7 @@
+## 0.1.6
+
+* Renamed: onInitReactor -> onBindReactor
+
 ## 0.1.5
 
 * Add: transformAction(). Now we can transform actions as well.
