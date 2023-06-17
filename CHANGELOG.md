@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Add: m(), a() to create ReactMutation and ReactAction respectively.
+
 ## 0.1.6
 
 * Renamed: onInitReactor -> onBindReactor

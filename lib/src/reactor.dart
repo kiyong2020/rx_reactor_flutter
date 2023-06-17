@@ -38,6 +38,13 @@ mixin Reactor<State> {
   Stream<ReactMutation> transform(Stream<ReactMutation> mutation) => mutation;
 
   void reduce(ReactMutation mutation, State state);
+
+  /// Short helper method to create ReactAction
+  ReactAction a(dynamic id, {dynamic data}) => ReactAction(id: id, data: data);
+
+  /// Short helper method to create ReactMutation
+  ReactMutation m(dynamic id, {dynamic data}) =>
+      ReactMutation(id: id, data: data);
 }
 
 class ReactAction {
