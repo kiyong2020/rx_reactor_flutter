@@ -57,7 +57,7 @@ class ReactBuilderState<T extends ContextReactor>
 }
 
 class TickerReactBuilder<T extends ContextReactor> extends ReactBuilder<T> {
-  const TickerReactBuilder(
+  TickerReactBuilder(
       {required super.builder, super.reactor, super.create, super.key});
 
   @override
