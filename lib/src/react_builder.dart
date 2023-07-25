@@ -5,19 +5,14 @@ import 'context_reactor.dart';
 
 class ReactBuilder<T extends ContextReactor> extends StatefulWidget {
   final T? reactor;
-  T Function()? create;
+  final T Function()? create;
   final Widget Function(BuildContext context, T reactor) builder;
 
-  ReactBuilder({required this.builder, this.reactor, this.create, super.key});
-
-  factory ReactBuilder.create(
-      {required builder, required T Function()? create, Key? key}) {
-    final reactBuilder = ReactBuilder<T>(
-      builder: builder,
-      key: key,
-    );
-    reactBuilder.create = create;
-    return reactBuilder;
+  ReactBuilder({required this.builder, this.reactor, this.create, super.key}) {
+    assert(this.reactor != null || this.create != null,
+        'At least one of reactor or create must be set');
+    assert(this.reactor == null || this.create == null,
+        'Only one of reactor or create parameter must be used');
   }
 
   @override
@@ -42,8 +37,6 @@ class ReactBuilderState<T extends ContextReactor>
   @override
   void initState() {
     super.initState();
-    assert(widget.reactor != null || widget.create != null,
-        'One of reactor or create must be set');
     reactor = widget.reactor ?? widget.create!();
     reactor.onInitState(this);
   }
@@ -64,7 +57,8 @@ class ReactBuilderState<T extends ContextReactor>
 }
 
 class TickerReactBuilder<T extends ContextReactor> extends ReactBuilder<T> {
-  TickerReactBuilder({required super.builder, super.reactor, super.key});
+  const TickerReactBuilder(
+      {required super.builder, super.reactor, super.create, super.key});
 
   @override
   State<StatefulWidget> createState() => TickerProviderReactBuilderState<T>();
