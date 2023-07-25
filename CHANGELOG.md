@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Added: create parameter in ReactBuilder constructor.
+
 ## 0.2.0
 
 * Add: m(), a() to create ReactMutation and ReactAction respectively.

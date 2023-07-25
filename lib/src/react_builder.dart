@@ -4,10 +4,21 @@ import 'package:flutter/widgets.dart';
 import 'context_reactor.dart';
 
 class ReactBuilder<T extends ContextReactor> extends StatefulWidget {
-  final T reactor;
+  final T? reactor;
+  T Function()? create;
   final Widget Function(BuildContext context, T reactor) builder;
 
-  const ReactBuilder({required this.reactor, required this.builder, super.key});
+  ReactBuilder({required this.builder, this.reactor, this.create, super.key});
+
+  factory ReactBuilder.create(
+      {required builder, required T Function()? create, Key? key}) {
+    final reactBuilder = ReactBuilder<T>(
+      builder: builder,
+      key: key,
+    );
+    reactBuilder.create = create;
+    return reactBuilder;
+  }
 
   @override
   State<StatefulWidget> createState() => ReactBuilderState<T>();
@@ -15,14 +26,15 @@ class ReactBuilder<T extends ContextReactor> extends StatefulWidget {
 
 class ReactBuilderState<T extends ContextReactor>
     extends State<ReactBuilder<T>> {
+  late T reactor;
   @override
   Widget build(BuildContext context) {
-    widget.reactor.onBuildUI(context);
+    reactor.onBuildUI(context);
 
     return Provider<T>.value(
-      value: widget.reactor,
+      value: reactor,
       child: Builder(builder: (context) {
-        return widget.builder(context, widget.reactor);
+        return widget.builder(context, reactor);
       }),
     );
   }
@@ -30,20 +42,29 @@ class ReactBuilderState<T extends ContextReactor>
   @override
   void initState() {
     super.initState();
+    assert(widget.reactor != null || widget.create != null,
+        'One of reactor or create must be set');
+    reactor = widget.reactor ?? widget.create!();
+    reactor.onInitState(this);
+  }
 
-    widget.reactor.onInitState(this);
+  @override
+  void didUpdateWidget(ReactBuilder<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.reactor != null) {
+      reactor = widget.reactor!;
+    }
   }
 
   @override
   void dispose() {
-    widget.reactor.onDispose();
+    reactor.onDispose();
     super.dispose();
   }
 }
 
 class TickerReactBuilder<T extends ContextReactor> extends ReactBuilder<T> {
-  const TickerReactBuilder(
-      {required super.reactor, required super.builder, super.key});
+  TickerReactBuilder({required super.builder, super.reactor, super.key});
 
   @override
   State<StatefulWidget> createState() => TickerProviderReactBuilderState<T>();
