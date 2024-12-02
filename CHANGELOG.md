@@ -1,3 +1,7 @@
+## 0.4.1
+
+* Fixed: minor version change.
+
 ## 0.4.0
 
 * Added: ServiceContextProvider.
