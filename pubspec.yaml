@@ -1,6 +1,6 @@
 name: rx_reactor
 description: Simple MVVM reactive programming framework with rxdart for flutter.
-version: 0.3.0
+version: 0.4.0
 homepage: https://github.com/kiyong2020/rx_reactor_flutter
 
 environment:
@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.0.5
-  rxdart: ^0.27.7
+  provider: ^6.1.2
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:
