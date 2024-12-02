@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Added: ServiceContextProvider.
+
 ## 0.3.0
 
 * Added: create parameter in ReactBuilder constructor.
