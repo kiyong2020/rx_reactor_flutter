@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:rx_reactor/src/rx_reactor.dart';
+import 'package:rx_reactor/rx_reactor.dart';
 import 'package:rxdart/rxdart.dart';
 
 enum _Action {

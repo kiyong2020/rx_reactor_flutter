@@ -1,3 +1,7 @@
+## 0.4.2
+
+* Fixed: moved src/rx_reactor.dart to .
+
 ## 0.4.1
 
 * Fixed: minor version change.
